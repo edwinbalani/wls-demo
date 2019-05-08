@@ -1,1 +1,4 @@
+include COPYING
+include README.md
+
 include wls_demo/keys/901.pem
