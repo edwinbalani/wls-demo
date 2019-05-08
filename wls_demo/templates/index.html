@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block main %}
+<h2>Welcome</h2>
+<p>This is a demonstration web login service (WLS), using:</p>
+<ul>
+  <li>the <a href="http://flask.pocoo.org" target="_blank">Flask microframework</a> for Python webapps</li>
+  <li>the <a href="https://github.com/edwinbalani/ucam-wls">ucam-wls</a> library to implement the WLS side of the Ucam-Webauth protocol</a>.</li>
+</ul>
+<p>You can try out the functionality of the WLS using <a href="{{ url_for('authenticate') }}?ver=1&url=https://demo.raven.cam.ac.uk/debug.html">this link</a>.
+The usernames are similar to those used by the Raven demo service at <code>demo.raven.cam.ac.uk</code>, and the
+<a href="https://raven.cam.ac.uk/project/keys/demo_server/" target="_blank">publicly-disclosed signing key</a>,
+with key ID 901, is used to sign responses from this WLS.</p>
+<p>An expanded set of features can be tested from <a href="{{ url_for('wls_test_menu') }}">this test page</a>.</p>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block main %}
+<h2>WLS test page</h2>
+
+<p>The following links test the functionality of this web login service (WLS).</p>
+<p>All links use <code>https://demo.raven.cam.ac.uk/debug.html</code> as the target URL, to validate and decode the generated WLS response.</p>
+<p>The suite below is based on those available at <a href="https://demo.raven.cam.ac.uk/test.html">the Raven demo server</a>.</p>
+
+<ul class="list-unstyled">
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html">Authenticate</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=2;url=https://demo.raven.cam.ac.uk/debug.html">Authenticate, version=2</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=3;url=https://demo.raven.cam.ac.uk/debug.html">Authenticate, version=3</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html">Authenticate, target over https:</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;aauth=pwd">Authenticate, aauth=pwd</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;aauth=pwd;iact=yes">Authenticate, aauth=pwd; iact=yes</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;aauth=pwd;iact=no">Authenticate, aauth=pwd; iact=no</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=2;url=https://demo.raven.cam.ac.uk/debug.html;aauth=pwd;iact=no">Authenticate, aauth=pwd; iact=no; ver=2</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=3;url=https://demo.raven.cam.ac.uk/debug.html;aauth=pwd;iact=no">Authenticate, aauth=pwd; iact=no; ver=3</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;aauth=bogus">Authenticate, aauth=bogus</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;aauth=pwd,bogus">Authenticate, aauth=pwd,bogus</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;desc=This%20should%20be%20'less%20than'%2C%20'pound'%2C%20'greater-than'%3A%20%3c%26%23163%3b%3e;url=https://demo.raven.cam.ac.uk/debug.html">Authenticate with a description</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;msg=This%20should%20be%20'less%20than'%2C%20'pound'%2C%20'greater-than'%3A%20%3c%26%23163%3b%3e;url=https://demo.raven.cam.ac.uk/debug.html">Authenticate with a message</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;params=For%20children">Authenticate with params</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html%3fa%3db%3bc%3dd">Authenticate when target has a query</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=2;url=https://demo.raven.cam.ac.uk/debug.html%3fa%3db%3bc%3dd">Authenticate when target has a query, ver=2</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=3;url=https://demo.raven.cam.ac.uk/debug.html%3fa%3db%3bc%3dd">Authenticate when target has a query, ver=3</a></li>
+  <li><a href="{{ url_for('authenticate') }}?url=https://demo.raven.cam.ac.uk/debug.html">Authenticate, no ver=</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;ver=2;url=https://demo.raven.cam.ac.uk/debug.html">Authenticate, ver= twice</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=99;url=https://demo.raven.cam.ac.uk/debug.html">Authenticate, invalid ver=</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1">Authenticate, no URL</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;bogus=foo">Authenticate, invalid parameter</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;date={{ now }};skew=5">Authenticate, time 'now' (reload to be sure), skew 5 sec</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;date={{ future_time }};skew=400">Authenticate, time 300 sec in the future (reload to be sure), skew 400 sec</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;date={{ past }};skew=5">Authenticate, time in the past, skew 5 sec</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;date={{ past }};skew=0">Authenticate, time in the past, skew 0 sec</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;date={{ past }}">Authenticate, time in the past, no skew</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;date={{ far_off_future }};skew=5">Authenticate, time in 10 years, skew 5 sec</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;date={{ far_off_future }};skew=0">Authenticate, time in 10 years, skew 0 sec</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;date={{ far_off_future }}">Authenticate, time in the future, no skew</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;skew=10">Authenticate, no time, skew 10 sec</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;skew=0">Authenticate, no time, skew 0 sec</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;date={{ future_time }};skew=200">Authenticate, time 300 sec in the future (reload to be sure), skew 200 sec</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=https://demo.raven.cam.ac.uk/debug.html;fail=yes">Authenticate, fail set to yes</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=2;url=https://demo.raven.cam.ac.uk/debug.html;fail=yes">Authenticate, fail set to yes, ver=2</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=3;url=https://demo.raven.cam.ac.uk/debug.html;fail=yes">Authenticate, fail set to yes, ver=3</a></li>
+  <li><a href="{{ url_for('authenticate') }}?url=https://demo.raven.cam.ac.uk/debug.html;fail=yes">Authenticate, fail set to yes, no ver=</a></li>
+  <li><a href="{{ url_for('authenticate') }}?url=https://demo.raven.cam.ac.uk/debug.html;fail=yes;bogus=foo">Authenticate, fail set to yes, no ver=, invalid parameter</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=http://www.srcf.ucam.org/foo.html">Authenticate, target in ucam.org</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=http://www.example.org/foo.html">Authenticate, target in example.org</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=http://www.example.org/foo.html;fail=yes">Authenticate, target in example.org, fail set to yes</a></li>
+  <li><a href="{{ url_for('authenticate') }}?ver=1;url=ftp://www.cam.ac.uk/foo.html">Authenticate, FTP URL</a></li>
+</ul>
+{% endblock %}

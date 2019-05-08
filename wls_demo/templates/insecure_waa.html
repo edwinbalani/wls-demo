@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block main %}
+<h2>Insecure web application</h2>
+<p class="lead">The web application at <code>{{ domain }}</code> requesting your identity is not secure.</p>
+<p>To avoid leaking your identity to eavesdroppers, we have configured this login service not to respond to insecure web applications.</p>
+<h3>What does this mean?</h3>
+<p>Websites that communicate in an encrypted manner with you use addresses that start with <code>https</code>.  The web application that sent
+you here requested that we send the result of your login to an address starting with <code>{{ scheme }}</code>, which does not provide encrypted
+communications.</p>
+<p>Anyone who is able to snoop on your connection, for example when you are connected to an unsecured public network, can
+capture the authentication responses sent by this service to web applications using insecure <code>{{ scheme }}</code> addresses.</p>
+<p>At best, an attacker with a capture of a valid authentication response would just find out your username.  At worst, they could
+successfully "replay" the same response to the same web application to try to log in as you.  Whether a replay attack like this would be
+possible can depend on many factors, including how robust and strict the target web application is in its checking of authentication responses.</p>
+{% endblock %}
