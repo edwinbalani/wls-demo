@@ -57,7 +57,7 @@ def index():
 
 def check_credentials(username, password):
     if app.config['TESTING']:
-        return re.match(r'^test0(0[0-9][1-9]|[1-9][0-9]{2})$', username) and password == 'test'
+        return re.match(r'^test0(00[1-9]|0[1-9][0-9]|[1-4][0-9][0-9]|500)$', username) and password == 'test'
     else:
         pass # TODO
 
