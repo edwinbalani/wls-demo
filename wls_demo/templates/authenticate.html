@@ -21,7 +21,7 @@
     <div class="card">
       <div class="card-body">
         <form method="post">
-          <div class="form-group row">
+          <div class="form-group row mx-0">
             {% if force_userid -%}
             <label class="col-sm-3 col-form-label">Username</label>
             <input type="text" readonly class="form-control-plaintext col-sm-9" value="{{ force_userid }}">
@@ -33,13 +33,13 @@
             <input type="text" id="userid" name="userid"{% if config['TESTING'] %} placeholder="test0001 to test0500"{% endif %} required class="col-sm-9 form-control">
             {% endif -%}
           </div>
-          <div class="form-group row">
+          <div class="form-group row mx-0">
             <label for="password" class="col-sm-3 col-form-label">Password</label>
             <input type="password" id="password" name="pwd"{% if config['TESTING'] %} placeholder="'test'"{% endif %} required class="col-sm-9 form-control">
           </div>
-          <div class="text-right">
-            <button type="button" name="action" value="cancel" class="btn btn-outline-secondary">Cancel</button>
-            <button type="submit" name="action" value="login" class="btn btn-primary">Sign in</button>
+          <div class="form-group text-right">
+            <button type="submit" name="action" value="login" class="float-right btn btn-primary">Sign in</button>
+            <button type="button" name="action" value="cancel" class="float-right mr-2 btn btn-outline-secondary">Cancel</button>
           </div>
         </form>
       </div>

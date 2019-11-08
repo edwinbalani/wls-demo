@@ -32,7 +32,6 @@ class BaseConfig:
 class SecurityConfig:
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SECURE = True
-    SESSION_COOKIE_SAMESITE = 'strict'
 
 app.config.from_object(BaseConfig)
 if 'WLS_SETTINGS' in os.environ:
