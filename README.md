@@ -1,5 +1,6 @@
-# wls_demo: a demonstration of the ucam-wls library
+# wls-demo: a demonstration of the ucam-wls library
 
-Repository: <https://github.com/edwinbalani/wls-demo>
+Repository: <https://gitlab.developers.cam.ac.uk/eb677/wls-demo>
 
-This is still very much a work in progress.  Contributions welcome.
+This is a basic webapp, which could still be considered a work in progress.
+Contributions welcome.
